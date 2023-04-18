@@ -1,7 +1,8 @@
-import { Entity, Generated, Column, PrimaryColumn } from "typeorm";
+import { Entity, ManyToOne, Generated, Column, PrimaryColumn } from "typeorm";
 
 import { Person } from "./Person";
-
+import { StudyLevel } from "./StudyLevel";
+import { Project } from "./Project";
 @Entity()
 export class Student extends Person {
   @PrimaryColumn("uuid")
@@ -14,4 +15,10 @@ export class Student extends Person {
     unique: true,
   })
   email: string;
+
+  @ManyToOne((type) => StudyLevel, (studyLevel) => studyLevel.students)
+  studyLevel: StudyLevel;
+
+  @ManyToOne((type) => Project, (project) => project.students)
+  project: Project;
 }
