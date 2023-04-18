@@ -42,6 +42,7 @@
   "scripts": {
     "start": "ts-node src/server.ts",
     "dev": "nodemon src/server.ts",
-    "typeorm": "typeorm-ts-node-commonjs"
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migration:generate": "npx typeorm-ts-node-esm migration:generate ./src/database/migrations/create-tables -d ./src/database/datasource.ts"
   }
 }

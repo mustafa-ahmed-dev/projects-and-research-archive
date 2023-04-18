@@ -1,15 +1,15 @@
 import { Router, Request, Response, NextFunction } from "express";
 
 import Controller from "../../abstracts/Controller";
-import { Admin } from "../../entities/Admin";
+import { Admin } from "../../database/entities/Admin";
 
 // Admin functionality
 import AdminService from "./admin.service";
 import { Id, AdminData, IdSchema, AdminSchema } from "./admin.validation";
 
 // Enums
-import { Gender } from "../../entities/Person";
-import { Action, Doctype } from "../../entities/Permission";
+import { Gender } from "../../database/entities/Person";
+import { Action, Doctype } from "../../database/entities/Permission";
 
 // Middleware
 import validationMiddleware from "../middleware/validation.middleware";

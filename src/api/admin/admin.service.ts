@@ -1,8 +1,8 @@
 // entity
-import { Admin } from "../../entities/Admin";
+import { Admin } from "../../database/entities/Admin";
 
 // enums
-import { Doctype } from "../../entities/Permission";
+import { Doctype } from "../../database/entities/Permission";
 
 // service
 import Service from "../../abstracts/Service";

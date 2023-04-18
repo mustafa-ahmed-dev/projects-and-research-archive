@@ -3,7 +3,7 @@ import { Entity, ManyToOne, Generated, Column, PrimaryColumn } from "typeorm";
 import { Project } from "./Project";
 
 @Entity()
-export class Field {
+export class Document {
   @PrimaryColumn("uuid")
   @Generated("uuid")
   id: string;

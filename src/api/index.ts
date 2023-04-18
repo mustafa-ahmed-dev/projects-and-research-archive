@@ -1,9 +1,9 @@
-import { AppDataSource } from "../data-source";
-import { Admin } from "../entities/Admin";
-
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
+
+import AppDataSource from "../database/datasource";
+import { Admin } from "./../database/entities/Admin";
 
 import apiLimiter from "./middleware/apiLimiter.middleware";
 import Controller from "./../abstracts/Controller";

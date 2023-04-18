@@ -1,7 +1,11 @@
 import { Request, Response, NextFunction } from "express";
 
-import { Doctype, Action, Permission } from "./../../entities/Permission";
-import { Admin } from "../../entities/Admin";
+import {
+  Doctype,
+  Action,
+  Permission,
+} from "../../database/entities/Permission";
+import { Admin } from "../../database/entities/Admin";
 
 import asyncHandler from "./../helpers/asyncHandler.helper";
 import { decodeToken, JWTPayload } from "./../helpers/jwt.helper";
