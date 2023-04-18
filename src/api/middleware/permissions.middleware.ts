@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 
 import { Doctype, Action, Permission } from "./../../entities/Permission";
-import { User } from "./../../entities/User";
+import { Admin } from "../../entities/Admin";
 
 import asyncHandler from "./../helpers/asyncHandler.helper";
 import { decodeToken, JWTPayload } from "./../helpers/jwt.helper";
@@ -18,8 +18,8 @@ const permissionsMiddleware =
 
     if (error) return next(error);
 
-    let user: User | null;
-    [user, error] = <[User | null, any]>await asyncHandler(
+    let user: Admin | null;
+    [user, error] = <[Admin | null, any]>await asyncHandler(
       prisma.user.findUnique({
         where: { username },
         include: { Permissions: true },

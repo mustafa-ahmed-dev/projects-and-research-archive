@@ -1,8 +1,8 @@
 import App from "./api";
 import config from "./config";
 
-import UserController from "./api/user/user.controller";
+import AdminController from "./api/admin/admin.controller";
 
-const app = new App([new UserController()], config.api.port);
+const app = new App([new AdminController()], config.api.port);
 
 app.listen();

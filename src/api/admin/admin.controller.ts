@@ -1,15 +1,15 @@
 import { Router, Request, Response, NextFunction } from "express";
 
 import Controller from "../../abstracts/Controller";
-import { User } from "./../../entities/User";
+import { Admin } from "../../entities/Admin";
 
-// User functionality
-import UserService from "./user.service";
-import { Id, UserData, IdSchema, UserSchema } from "./user.validation";
+// Admin functionality
+import AdminService from "./admin.service";
+import { Id, AdminData, IdSchema, AdminSchema } from "./admin.validation";
 
 // Enums
-import { Gender } from "./../../abstracts/Person";
-import { Action, Doctype } from "./../../entities/Permission";
+import { Gender } from "../../entities/Person";
+import { Action, Doctype } from "../../entities/Permission";
 
 // Middleware
 import validationMiddleware from "../middleware/validation.middleware";
@@ -28,7 +28,7 @@ import ConflictError from "../../errors/ConflictError";
 import InternalServerError from "../../errors/InternalServerError";
 import UnauthorizedError from "../../errors/UnauthorizedError";
 
-class UserController extends Controller {
+class AdminController extends Controller {
   public routes = {
     getAll: "",
     getOne: "/:id",
@@ -42,13 +42,13 @@ class UserController extends Controller {
   };
   public router: Router;
 
-  private service: UserService;
+  private service: AdminService;
 
   constructor() {
-    super("/users", Doctype.USER);
+    super("/admins", Doctype.USER);
 
     this.router = Router();
-    this.service = new UserService(this.doctype);
+    this.service = new AdminService(this.doctype);
 
     this.initializeRoutes();
   }
@@ -74,14 +74,14 @@ class UserController extends Controller {
       authMiddleware,
       // permissionsMiddleware(Action.READ, this.doctype),
       validationMiddleware(IdSchema),
-      this.getUserPermissions_route
+      this.getAdminPermissions_route
     );
 
     this.router.post(
       this.routes.createOne,
       authMiddleware,
       // permissionsMiddleware(Action.CREATE, this.doctype),
-      validationMiddleware(UserSchema),
+      validationMiddleware(AdminSchema),
       this.createOne_route
     );
 
@@ -97,7 +97,7 @@ class UserController extends Controller {
       this.routes.updateOne,
       authMiddleware,
       // permissionsMiddleware(Action.UPDATE, this.doctype),
-      validationMiddleware(UserSchema),
+      validationMiddleware(AdminSchema),
       this.updateOne_route
     );
 
@@ -123,9 +123,9 @@ class UserController extends Controller {
   }
 
   /**
-   * @desc        Gets all users
+   * @desc        Gets all admins
    * @method      GET
-   * @path        /users
+   * @path        /admins
    * @access      private
    */
   private getAll_route = async (
@@ -137,9 +137,9 @@ class UserController extends Controller {
   };
 
   /**
-   * @desc        Gets one user by id
+   * @desc        Gets one admin by id
    * @method      GET
-   * @path        /users
+   * @path        /admins
    * @access      private
    */
   private getOne_route = async (
@@ -149,21 +149,21 @@ class UserController extends Controller {
   ) => {};
 
   /**
-   * @desc        Creates a user
+   * @desc        Creates a admin
    * @method      GET
-   * @path        /users/:id/permissions
+   * @path        /admins/:id/permissions
    * @access      private
    */
-  private getUserPermissions_route = async (
+  private getAdminPermissions_route = async (
     request: Request,
     response: Response,
     next: NextFunction
   ) => {};
 
   /**
-   * @desc        Creates a user
+   * @desc        Creates a admin
    * @method      POST
-   * @path        /users
+   * @path        /admins
    * @access      private
    */
   private createOne_route = async (
@@ -173,9 +173,9 @@ class UserController extends Controller {
   ) => {};
 
   /**
-   * @desc        Deletes a user
+   * @desc        Deletes a admin
    * @method      DELETE
-   * @path        /users/:id
+   * @path        /admins/:id
    * @access      private
    */
   private deleteOne_route = async (
@@ -185,9 +185,9 @@ class UserController extends Controller {
   ) => {};
 
   /**
-   * @desc        Updates a user
+   * @desc        Updates a admin
    * @method      PUT
-   * @path        /users/:id
+   * @path        /admins/:id
    * @access      private
    */
   private updateOne_route = async (
@@ -197,9 +197,9 @@ class UserController extends Controller {
   ) => {};
 
   /**
-   * @desc        Logins a user
+   * @desc        Logins a admin
    * @method      POST
-   * @path        /users/login
+   * @path        /admins/login
    * @access      public
    */
   private login_route = async (
@@ -209,11 +209,11 @@ class UserController extends Controller {
   ) => {};
 
   /**
-   * @desc        Gets all users
+   * @desc        Gets all admins
    * @method      POST
-   * @path        /users/logout
+   * @path        /admins/logout
    * @access      private
-   * @note        The user will waits a second and will be logged out
+   * @note        The admin will waits a second and will be logged out
    */
   private logout_route = async (
     request: Request,
@@ -224,7 +224,7 @@ class UserController extends Controller {
   /**
    * @desc        Refreshes an access token
    * @method      POST
-   * @path        /users/:id/refreshtoken
+   * @path        /admins/:id/refreshtoken
    * @access      private
    */
   private refreshToken = async (
@@ -234,4 +234,4 @@ class UserController extends Controller {
   ) => {};
 }
 
-export default UserController;
+export default AdminController;

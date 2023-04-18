@@ -1,8 +1,8 @@
 // entity
-import { User } from "./../../entities/User";
+import { Admin } from "../../entities/Admin";
 
 // enums
-import { Doctype } from "./../../entities/Permission";
+import { Doctype } from "../../entities/Permission";
 
 // service
 import Service from "../../abstracts/Service";
@@ -14,9 +14,9 @@ import asyncHandler from "../helpers/asyncHandler.helper";
 import InternalServerError from "../../errors/InternalServerError";
 
 // schemas
-import { UserData } from "./user.validation";
+import { AdminData } from "./admin.validation";
 
-class UserService extends Service {
+class AdminService extends Service {
   constructor(private docType: Doctype) {
     super();
   }
@@ -27,13 +27,13 @@ class UserService extends Service {
 
   public async findByName(name: string) {}
 
-  public async findOneByUsername(username: string) {}
+  public async findOneByAdminname(adminname: string) {}
 
   public async findByEmail(email: string) {}
 
-  public async createOne(userData: UserData) {}
+  public async createOne(adminData: AdminData) {}
 
-  public async updateOne(id: string, data: UserData) {}
+  public async updateOne(id: string, data: AdminData) {}
 
   public async deleteOne(id: string) {}
 
@@ -44,4 +44,4 @@ class UserService extends Service {
   public async refreshToken(id: string, token: string) {}
 }
 
-export default UserService;
+export default AdminService;

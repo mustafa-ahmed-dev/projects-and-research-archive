@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { User } from "./entities/User";
+import { Admin } from "./entities/Admin";
 import { Permission } from "./entities/Permission";
 
 import config from "./config";
@@ -14,7 +14,7 @@ export const AppDataSource = new DataSource({
   database: config.database.name,
   synchronize: true,
   logging: false,
-  entities: [User, Permission],
+  entities: [Admin, Permission],
   migrations: [],
   subscribers: [],
 });

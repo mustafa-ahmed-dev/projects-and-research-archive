@@ -6,7 +6,7 @@ import {
   ManyToOne,
   Unique,
 } from "typeorm";
-import { User } from "./User";
+import { Admin } from "./Admin";
 
 export enum Action {
   CREATE = "create",
@@ -21,7 +21,7 @@ export enum Doctype {
 }
 
 @Entity()
-@Unique(["doctype", "action", "user"])
+@Unique(["doctype", "action", "admin"])
 export class Permission {
   @PrimaryColumn("uuid")
   @Generated("uuid")
@@ -39,6 +39,6 @@ export class Permission {
   })
   action: Action;
 
-  @ManyToOne((type) => User, (user) => user.permissions)
-  user: User;
+  @ManyToOne((type) => Admin, (admin) => admin.permissions)
+  admin: Admin;
 }

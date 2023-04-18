@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { Gender } from "./../../abstracts/Person";
+import { Gender } from "../../entities/Person";
 
 export const IdSchema = z.object({
   params: z.object({
@@ -8,7 +8,7 @@ export const IdSchema = z.object({
   }),
 });
 
-export const UserSchema = z.object({
+export const AdminSchema = z.object({
   body: z.object({
     name: z.string().min(4).max(30),
     dateOfBirth: z.string().min(4),
@@ -17,6 +17,6 @@ export const UserSchema = z.object({
 });
 
 type Id = z.infer<typeof IdSchema>["params"];
-type UserData = z.infer<typeof UserSchema>["body"];
+type AdminData = z.infer<typeof AdminSchema>["body"];
 
-export { Id, UserData };
+export { Id, AdminData };
